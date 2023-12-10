@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center" style="padding-top: 5%;">
+            <div class="col-sm-4"> 
+                <h1>Ingresar Proyecto</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                      Datos del proyecto
+                    </div>
+                    <div class="card-body">
+                        <div class="container" style="padding-top: 5%;">
+                            <div class="row ">
+                                <label>{{ form.nombre_proyecto.label }}: </label> 
+                                <div class="col">
+                                    {{ form.nombre_proyecto }}
+                                </div>
+                                <label>Fecha Inicio: </label> 
+                                <div class="col">
+                                    {{form.fecha_expedicion}}
+                                </div>
+
+                            </div>
+                            <div class="row" style="padding-top: 1%;">
+                                <label>Servicio: </label> 
+                                <div class="col-sm">
+                                    {{ form.servicio }}
+                                </div>
+                                <label>Numero de orden: </label> 
+                                <div class="col-sm">
+                                    {{form.numero_orden}}   
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="container" style="padding-top: 3%;">
+                <div class="card">
+                    <div class="card-header">
+                      Datos del cliente
+                    </div>
+                    <div class="card-body">
+                        <div class="container" style="padding-top: 5%;">
+                            <div class="row">
+ 
+                                <label>Presupuesto del Cliente: </label> 
+                                <div class="col-sm">
+                                    {{form.presupuesto_cliente}}  
+                                </div>
+                                <label>Direccion: </label>
+                                <div class="col">
+                                    {{form.departamento}}    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            
+            <div class="container" style="padding-top: 3%;">
+                <div class="card">
+                    <div class="card-header">
+                      Detalles
+                    </div>
+                    <div class="card-body">
+                      <div class="container" style="padding-top: 5%;">
+                        <div class="row">
+                            <label>Descripcion: </label> 
+                            <div class="col-sm-4">
+                                {{ form.descripcion }}
+                            </div>
+                            <label>Seleccionar taza: </label>
+                            <div class="col-sm">
+                                {{form.id_costos_indirectos}}    
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+    
+            </div>
+            
+            
+            <div class="row" style="padding-top: 5%;">
+                <div class="col-sm-4"> 
+                    <a class="btn btn-primary" href="{% url 'modulo_costo:inicio_costos' %}">Volver</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </form>        
+    </div>
+
+</body>
+</html>

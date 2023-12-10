@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'modulo_general/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Libro Mayor</title>
+</head>
+
+<body>
+
+
+    <main class="container py-5">
+        <section class="card card-body">
+            <h1 class="display-1 text-center">Vista de libro Mayor</h1>
+            {% if libros %}
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Fecha inicial</th>
+                        <th scope="col">Fecha Fin</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                      <tr>
+                        <td>{{libro.fecha_de_inicio_periodo}}</td>
+                        <td>{{libro.fecha_fin_periodo}}</td>
+                        <td><a href="{% url 'modulo_general:mostrar_libro_mayor' libro.id_libro_mayor %}" class="btn btn-outline-info">Ver Libro</a></td>
+                      </tr>
+                       {% endfor %}
+                    </tbody>
+                  </table>
+            {% endif %}
+        </section>
+
+        <div class="formulario_obtener_mayorizacion container py-5">
+            <form action="" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <h3>  Seleccione un periodo para maryorizar </h3>
+                        <label for="fecha_inicio_1">Seleccion Fecha inicio de mayorizacion</label>
+                        <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="fehca_fin_1">Seleccion fecah fin de mayorizacion</label>
+                        <input type="date" id="fecha_fin" name="fecha_fin" class="form-control"> 
+                    </div>
+                    <div>
+                        <input type="submit" value="Mayorizar" class="btn btn-primary">
+                    </div>
+            </form>
+    </div>
+    </main>
+
+
+</body>
+
+</html>

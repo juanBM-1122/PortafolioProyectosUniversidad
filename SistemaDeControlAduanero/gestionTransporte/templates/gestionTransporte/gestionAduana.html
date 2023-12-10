@@ -1,0 +1,31 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container" id="gestionAduana">
+    <h2>Elegir aduana</h2>
+
+    <div class="container">
+      <div class="row">
+
+
+
+          {%for user in aduanas%}
+
+          <div class="card text-white bg-primary mb-3" style="max-width: 20rem; margin: 5px;">
+            <div class="card-header">{{user.aduana_id.id}}</div>
+            <div class="card-body">
+              <h4 class="card-title">{{user.aduana_id.nombre}}</h4>
+              
+            </div>
+            <div class="card-footer">
+              <a class="btn text-light badge rounded-pill bg-info" href="../../listadoRegistroTransporte/{{user.aduana_id.id}}">Gestionar</a>
+            </div>
+          </div>
+
+        {%endfor%}
+      </div>
+    </div>
+                  
+  </div>
+</div>
+{% endblock %}

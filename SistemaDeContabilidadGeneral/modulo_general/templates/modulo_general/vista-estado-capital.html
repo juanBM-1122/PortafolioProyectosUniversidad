@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Estado de resultado</title>
+</head>
+<body>
+    <div style="width: 75%; margin: 0 auto;">
+        <table class="table">
+            <thead>
+                <tr style="text-align:center;">
+                    <td colspan="4"><h3>5-State Tech</h3></td>
+                </tr>
+                <tr style="border: none; text-align: center;">
+                    <td colspan="4"><h3>Estado de resultado</h3></td>
+                </tr>
+                <tr style="border: none; text-align: center;">
+                    <td colspan="4">Periodo de: {{estado_capital.fecha_de_inicio}} hasta: {{estado_capital.fecha_de_fin}}</td>
+                </tr>
+              <tr>
+                <th scope="col">Numero cuenta</th>
+                <th scope="col">Nombre cuenta</th>
+                <th scope="col">Debe</th>
+                <th scope="col">Haber</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for capital in cuentas_t %}
+              <tr>
+                <th scope="row">{{capital.cuenta.codigo_cuenta}}</th>
+                <td>{{capital.cuenta.nombre_cuenta}}</td>
+                <td>$.-</td>
+                <td>{{capital.saldo_cuenta_T}}</td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <th scope="row">611</th>
+                <td>Utilidad del Periodo</td>
+                <td>$.-</td>
+                <td>{{utilidad}}</td>
+              </tr>
+              <tr>
+                <th scope="row">312</th>
+                <td>Capital Social</td>
+                <td>$.-</td>
+                <td>{{estado_capital.capital_social}}</td>
+              </tr>
+              <tfoot style="background-color: rgb(190, 186, 186);">
+                <td colspan="2">Total</td>
+                <td>{{saldo_gastos}}</td>
+                <td>{{saldo_ingresos}}</td>
+              </tfoot>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>

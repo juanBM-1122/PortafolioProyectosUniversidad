@@ -1,0 +1,24 @@
+.formulario_1{
+         width: 75%;
+         height: 50%;
+         margin: 10px auto;
+         padding: 10px;
+}
+
+.list_input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.list_input--cofig{
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario_2{
+    width: 75%;
+    margin: 10px auto;
+}

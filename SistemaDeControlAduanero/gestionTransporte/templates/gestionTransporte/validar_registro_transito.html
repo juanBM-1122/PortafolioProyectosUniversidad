@@ -1,0 +1,50 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{% block content %}
+
+<h3>Resumen de datos del registro</h3>
+<table class="table table-striped" rules=all>
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Fecha registro</th>
+            <th scope="col">Fecha arribo aduana</th>
+            <th scope="col">Peso de la carga</th>
+            <th scope="col">Descripcion de la carga</th>
+            <th scope="col">Nombre motorista</th>
+            <th scope="col">Licencia</th>
+            <th scope="col">Placa vehiculo</th>
+            <th scope="col">Motor del vehiculo</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>{{registro_transito.fecha_registro}}</td>
+        <td>{{registro_transito.fecha_destino}}</td>
+        <td>{{carga_transito.peso}}</td>
+        <td>{{carga_transito.descripcion}}</td>
+        <td>{{motorista_transito.nombre}}</td>
+        <td>{{motorista_transito.licencia}}</td>
+        <td>{{vehiculo_transito.placa}}</td>
+        <td>{{vehiculo_transito.motor}}</td>
+    </tr>
+</table>
+{% csrf_token %}
+<form action="" method="post">
+    <legend><h3>Validacion Registro</h3></legend>
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="fecha_ahora" class="form-label mt-4">Fecha_validacion</label>
+        <input type="date" value="{{fecha_ahora}}" class="form-control" readonly>
+    </div>
+    <div class="form-group">
+        <label for="diferencia_de_peso" class="form-label mt-4">Aduana que realiza la revision</label>
+        {{formulario.aduana}}
+    </div>
+    <div class="form-check" style="margin:10px, width=50%">
+        {{formulario.estado_validacion}}
+        <label class="form-check-label" for="flexCheckDefault">
+            Estado de Validacion
+          </label>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Guardar">
+</form>
+{% endblock %}

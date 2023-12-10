@@ -1,0 +1,42 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{%block content%}
+
+    <div class="container" id="container_registro">
+        <form action="" method="POST">
+            <table class="table">
+                {% csrf_token %}
+                {%if messages%}  
+                    {% for mensaje in messages %}
+                    <div class="alert alert-danger">
+                        {{mensaje}}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="form-group">{{formularioRegistro.as_table}}</div>
+            </table>
+<!--
+<div id="chekTipoUsuario">
+                <fieldset class="form-group" >
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Usuario Empresa</label>
+                                </div>
+                                <div class="col">
+                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> Usuario Aduana </label>
+                                </div>
+                              </div>  
+                        </div>
+                  </fieldset>
+            </div>
+-->
+            
+            <div class="container" id="containerButtonEnviar">
+                <input type="submit" class="btn btn-primary">
+            </div>
+            
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,25 @@
+
+    {% extends "gestionTransporte/base.html" %}
+    {% load static %}
+    {% block content %}
+        <div class="container" id="container_login">
+            <h1>Iniciar sesion</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table class="table">
+                {%if messages%}  
+                    {% for mensaje in messages %}
+                    <div class="alert alert-danger">
+                        {{mensaje}}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {{ formulario.as_table }}
+            </table>
+            <input type="submit" value="iniciar sesion" class="btn btn-primary">
+            <!--agrega un boton que haga referencia a la pagina de registro de usuario-->
+            <a href="{% url 'gestionTransporte:registroUsuario' %}" class="btn btn-primary">Registrar Usuario</a>
+        </form>
+        </div>
+        
+    {% endblock %}

@@ -1,0 +1,59 @@
+<div class="modal-dialog modal-lg" rol="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-tittle">Edición de Transportista</h2>
+            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/editarMotorista/" method = "POST">{% csrf_token %}
+                <div class="row">
+                    <div class="col-6">
+                        <label for="txtNombre" class="form-label mt-4">Id</label>
+                        <input type="text" class="form-control" id="txtId" name="txtId" value={{motorista.id}} readonly>
+                    </div>
+                    <div class="col-6">
+                        <label for="txtNombre" class="form-label mt-4">Nombre</label>
+                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" value={{motorista.nombre}} required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="txtNombre" class="form-label mt-4">Apellido</label>
+                        <input type="text" class="form-control" id="txtApellido" name="txtApellido" value={{motorista.apellido}} required>
+                    </div>
+                    <div class="col-6">
+                        <label for="txtNombre" class="form-label mt-4">Pasaporte/DUI</label>
+                        <input type="text" class="form-control" id="txtDoc" name="txtDoc" value={{motorista.doc_identificacion}} required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="txtNombre" class="form-label mt-4">Licencia</label>
+                        <input type="text" class="form-control" id="txtLic" name="txtLic" value={{motorista.licencia}} required>
+                    </div>
+                    <div class="col-6">
+                        <label for="txtNombre" class="form-label mt-4">Sexo</label>
+                        <select name="txtSexo" id="txtSexo" class="form-select">
+                            {% for sex in selectSexo %}
+                            {% if sex.id == motorista.sexo.id %}
+                                <option value="{{sex.id}}" selected>{{sex.nombre_sexo}}</option>
+                            {% else %}
+                                <option value="{{sex.id}}">{{sex.nombre_sexo}}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!--<div class="row">
+                    <div class="col-6">
+                        <label for="txtEmpresa" class="form-label mt-4">Empresa</label>
+                        <input type="text" class="form-control" id="txtEmpresa" name="txtEmpresa" value={{motorista.empresa}} readonly>
+                    </div>
+                </div>-->
+        <div class="modal-footer mt-4">
+            <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" type="submit">Confirmar</button>
+        </div>
+    </form>
+    </div>
+</div>

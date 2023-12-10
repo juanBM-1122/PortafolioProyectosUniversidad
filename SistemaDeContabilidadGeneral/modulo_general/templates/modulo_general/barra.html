@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'modulo_general/css/barra.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" style="padding-bottom: 10%;">
+        <div class="fixed-nav-bar">
+            <div class="logo" ><span>5º</span>State-Tech</div>
+            <input type="checkbox" id="menuButton" />
+            <label for="menuButton" class="menu-button-label">
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+            </label>
+        </div>
+        <div class="the-bass" style="max-height: 105px">
+            <div class="rela-block drop-down-container">
+                <div class="drop-down-item"><a href="{% url 'modulo_general:mostrar_inicio'%}" style="text-decoration: none; color: white;">Inicio</a></div>
+            </div>
+            <div class="rela-block drop-down-container">
+                <div class="drop-down-item"><a href="{% url 'modulo_costo:inicio_costos'%}" style="text-decoration: none; color: white;">Gestion de costos</a></div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'modulo_general/js/barra.js' %}"></script>
+</body>
+
+</html>

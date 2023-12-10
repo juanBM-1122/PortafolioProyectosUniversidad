@@ -1,0 +1,63 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{%block content%}
+
+<!--<h1>{{empresa.nombre}}</h1>-->
+<div class="container mt-4">
+    <div class="row p-4 alert alert-dismissible alert-light ">
+        <div class="col-md-6">
+            <!--<div class="alert alert-dismissible alert-light ">
+                <h1>{{empresa.nombre}}</h1>
+            </diV>-->
+            <h1>{{empresa.nombre}}</h1>
+            <h2>@{{empresa.usuario_sistema}}</h2>
+            <h4>{{empresa.pais}}</h4>
+        </div>
+        <div class="col-md-6 d-flex flex-column mb-3 justify-content-center">
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a href="/registroManifiesto" type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip" title="Agregar un nuevo registro de transito aduanero">Registro</a>
+
+                <a href="/registrarVehiculo" type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                title="Gestionar vehiculos">Vehiculo</a>
+
+                <a href="/registrarMotorista" type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                title="Gestionar Transportista">Transportista</a>
+
+              </div>
+        </div>
+    </div>
+</div>
+<div class="container alert alert-dismissible alert-light text-center">
+    <h2 class="text-primary">Registros de Transito Aduanero de la empresa</h2><hr>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nº</th>
+                <th scope="col">Carga</th>
+                <th scope="col">Vehiculo(Placa)</th>
+                <th scope="col">Transportista</th>
+                <th scope="col">Fecha de arribo</th>
+                <th scope="col">Pais consignatario</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
+            {% for registro in registros %}
+            <tr>
+                <td>{{registro.numero_registro}}</td>
+                <td>{{registro.carga}}</td>
+                <td>{{registro.vehiculo}}</td>
+                <td>{{registro.motorista}}</td>
+                <td>{{registro.fecha_destino}}</td>
+                <td>{{registro.pais_consignatario}}</td>
+                <td>
+                    <a href="/verRegistroTransito/{{registro.id}}" class="btn text-light badge rounded-pill bg-info">Ver</a>
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

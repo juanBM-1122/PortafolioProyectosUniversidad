@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Listado de balances de comprobacion</title>
+</head>
+<body>
+    <main class="container py-5">
+        <section class="card card-body">
+            <h1 class="display-1 text-center">Lista de Balances de comprobación</h1>
+            {% if datos_balance %}
+                <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Fecha de inicio</th>
+                        <th scope="col">Fecha Fin periodo</th>
+                        <th scope="col">Accion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for balance in datos_balance %}
+                      <tr>
+                        <td>{{balance.libro_mayor.fecha_de_inicio_periodo}}</td>
+                        <td>{{balance.libro_mayor.fecha_fin_periodo}}</td>
+                        <td><a href="{% url 'modulo_general:balance_comprobacion'%}?id_balance={{balance.libro_mayor.id_libro_mayor}}" class="btn btn-outline-info">Ver Libro</a></td>
+                      </tr>
+                       {% endfor %}
+                    </tbody>
+                  </table>
+            {% endif %}
+        </section>
+</body>
+</html>

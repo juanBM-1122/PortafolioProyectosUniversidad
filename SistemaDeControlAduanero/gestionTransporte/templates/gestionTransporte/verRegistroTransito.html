@@ -1,0 +1,141 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container card bg-light mb-3 mt-4">
+    <div class="card-header text-center">
+        <h1>Registro de Operación de Transito Aduanero Nº {{registro.id}}</h1>
+    </div>
+    <div class="card-body">
+        <h6>Datos del Transportista</h6>
+        <form action="">
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="nombre" value="{{registro.motorista.nombre}} {{registro.motorista.apellido}}" disabled>
+                    <label for="nombre" class="floating-label">Nombre: </label>
+                </div>
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="apellido" value="{{registro.motorista.apellido}}" disabled>
+                    <label for="apellido" class="floating-label">Apellido: </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.motorista.doc_identificacion}}" disabled>
+                    <label for="doc" class="floating-label">Documento de identificación: </label>
+                </div>
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.motorista.licencia}}" disabled>
+                    <label for="doc" class="floating-label">Licencia: </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-body">
+        <h6>Datos del Medio de Transporte</h6>
+        <form action="">
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="nombre" value="{{registro.vehiculo.placa}}" disabled>
+                    <label for="nombre" class="floating-label">Número de placa </label>
+                </div>
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="apellido" value="{{registro.vehiculo.marca}}" disabled>
+                    <label for="apellido" class="floating-label">Marca </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.vehiculo.modelo}}" disabled>
+                    <label for="doc" class="floating-label">Modelo </label>
+                </div>
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.vehiculo.chasis}}" disabled>
+                    <label for="doc" class="floating-label">Númer de Chasis </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.vehiculo.anio}}" disabled>
+                    <label for="doc" class="floating-label">Año </label>
+                </div>
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.vehiculo.num_ejes}}" disabled>
+                    <label for="doc" class="floating-label">Ejes </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.vehiculo.capacidad}} kg" disabled>
+                    <label for="doc" class="floating-label">Capacidad</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-body">
+        <h6 class="card-tittle">Manifiesto de Carga</h6>
+        <form action="">
+            <div class="row">
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.carga.tipo}}" disabled>
+                    <label for="doc" class="floating-label">Tipo de carga:</label>
+                </div>
+                <div class="col-6 form-floating mb-3">
+                    <input type="text" class="form-control"  name="doc" value="{{registro.carga.peso}}" disabled>
+                    <label for="doc" class="floating-label">Peso </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7 form-floating">
+                    <textarea type="text" class="form-control h-100"  name="descripcion" cols="80" rows="24" value="{{registro.carga.descripcion}}" disabled>{{registro.carga.descripcion}}</textarea>
+                    <label for="descripcion" class="floating-label">Descripción:</label>
+                </div>
+                <div class="col-5">
+                    <div class="row form-floating">
+                        <input type="text" class="form-control"  name="origen" value="{{registro.origen}}" disabled>
+                        <label for="origen" class="floating-label">Origen: </label>
+                    </div>
+                    <div class="row form-floating mt-5">
+                        <input type="text" class="form-control"  name="consignatario" value="{{registro.pais_consignatario}}" disabled>
+                        <label for="consignatario" class="floating-label">Pais Consignatario: </label>
+                    </div>
+                    <div class="row form-floating mt-5">
+                        <input type="text" class="form-control"  name="dir_consignatario" value="{{registro.origen}}" disabled>
+                        <label for="dir_consignatario" class="floating-label">Dirección consignatario: </label>
+                    </div>
+                    <div class="row form-floating mt-5">
+                        <input type="text" class="form-control"  name="aduana_dest" value="{{registro.aduana_destino}}" disabled>
+                        <label for="aduana_dest" class="floating-label">Aduana Destino </label>
+                    </div>
+                    <div class="row form-floating mt-5">
+                        <input type="text" class="form-control"  name="creacion" value="{{registro.fecha_registro}}" disabled>
+                        <label for="creacion" class="floating-label">Fecha de creación: </label>
+                    </div>
+                    <div class="row form-floating mt-5">
+                        <input type="text" class="form-control"  name="arribo" value="{{registro.fecha_destino}}" disabled>
+                        <label for="arribo" class="floating-label">Fecha de arribo: </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container alert alert-dismissible alert-light">
+    <h4>Estado del Registro: <strong>{{validacion.estado_validacion}}</strong></h4>
+    <div>
+        <p>Fecha de revisión: {{validacion.fecha_validacion}}</p>
+        <p class="card-text">{{validacion.aduana}}</p>
+    </div>
+    <h6><strong>Observaciones</strong></h6>
+    {% for detalle in detalleValidacion %}
+    <div class="card bg-light mt-4">
+        <div class="card-header">{{detalle.tipo_validacion}}</div>
+        <div class="card-body">
+            <p class="card-text">{{detalle.descripcion_validacion}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<a href="/inicioEmpresa" class="btn text-light bg-primary text-center" style="margin-left:45%; margin-right:45% width:10%">Volver</a>
+
+{% endblock %}

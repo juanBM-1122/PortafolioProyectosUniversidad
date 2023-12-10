@@ -1,0 +1,229 @@
+
+#containerListados {
+    position: relative;
+    padding-top: 3%;
+  }
+
+#saludo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  background-color: #cae5f7;
+  color: black;
+  text-align: center;
+}
+
+#footcontainer {
+  position: auto;
+  text-align: center;
+  padding-top: 1%;
+  width: 100%;
+  height: 50%;
+}
+
+#formularioRegistroEmpresa{
+  position: auto;
+  padding-top: 1%;
+}
+
+#botonRegistrar{
+  position: auto;
+  text-align: center;
+}
+
+
+#container_registro{
+  position: auto;
+  width: 50%;
+  top: 50%;
+  padding-top: 3%;
+}
+
+#container_login{
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+#alertaEmpresa{
+  position: auto;
+}
+
+#formEmpre{
+  position: auto;
+  width: 100%;
+  height: 100%;
+  padding-top: 1%;
+  overflow-y: auto;
+  scrollbar-color: red;
+}
+
+#cuerpo{
+  position: absolute;
+  width: 100%;
+  height: 75%;
+  overflow-y: auto;
+}
+
+#containerButtonEnviar{
+  position: auto;
+  text-align: center;
+}
+
+#chekTipoUsuario{
+  position: auto;
+  padding-bottom: 5%;
+}
+
+#gestionAduana{
+  position: absolute;
+  left: 45%;
+  top: 25%;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  margin: 5%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#gestionAduanaForm{
+  position: relative;
+  height: 95%;
+  padding-bottom: 5%;
+  text-align: center;
+}
+#tablaGestionAduana{
+  position: relative;
+  margin-top: 1%;
+  overflow-y: auto;
+  width: 100%;
+  height: 95%;
+  padding-top: 5%;
+}
+
+#tablaGestionAduana::-webkit-scrollbar {
+  width: 20px;
+}
+
+#tablaGestionAduana::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+#tablaGestionAduana::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: gray;
+}
+
+#tablaAduana tr{
+  margin: 5px;
+  padding: 5px;
+ 
+}
+#tablaAduana th{
+  padding: 3px;
+}
+
+#tablaAduana td{
+  padding: 1px;
+}
+
+#filtros{
+  text-align: center;
+}
+
+
+#botonesFiltros{
+  text-align: center;
+  transform: translate(0%, -10%);
+}
+
+#tablaGestionAduana{
+  position: auto;
+  text-align: center;
+}
+#container_listarRegistros{
+  padding-top: 1%;
+}
+
+#botonFiltrar{
+  padding: 1%;
+  padding-left: 5%;
+}
+
+#containerC{
+  padding-top: 1%;
+}
+
+#carruselLabels{
+  background-color: white;
+  opacity: 0.8;
+}
+#botonesLog{
+  padding-left: 60%;
+}
+
+/*Estilos de la barra de scroll */
+#cuerpo::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+#cuerpo::-webkit-scrollbar {
+  width: 8px;
+}
+
+ /* Estilos barra (thumb) de scroll */
+ #cuerpo::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+#cuerpo::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+#cuerpo::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+ /* Estilos track de scroll */
+ #cuerpo::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 4px;
+}
+
+#cuerpo::-webkit-scrollbar-track:hover, 
+#cuerpo::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+/**/
+
+#carruselLabels{
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.6px);
+  -webkit-backdrop-filter: blur(5.6px);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  }

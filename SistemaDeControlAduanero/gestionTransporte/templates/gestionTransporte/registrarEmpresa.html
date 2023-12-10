@@ -1,0 +1,78 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<!--
+<div class="container" id="container_registro">
+        
+            <form action="" method="POST" id="scroolbar">
+                <table class="table">
+                    {% csrf_token %}
+                    {%if messages%}  
+                        {% for mensaje in messages %}
+                        <div class="alert alert-danger">
+                            {{mensaje}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                        {{formularioRegistro.as_table}}
+                </table>
+                <input type="submit" class="btn btn-primary">
+            </form>
+    </div>
+-->
+    
+ 
+    <div class="container">
+        <form form action="" class="row g-3" method="POST" id="formEmpre">
+                                             
+                        {% csrf_token %}
+                        {%if messages%}  
+                            {% for mensaje in messages %}
+                            <div class="alert alert-danger" id="alertaEmpresa">
+                              {{ formularioRegistro.nitEmpresa.errors }}
+                            </div>
+                            
+                            {% endfor %}
+                        {% endif %}
+            <div class="col-md-2">
+              <label for="inputState" class="form-label">Tipo documento</label>
+               {{formularioRegistro.tipo_documento_empresa}}
+            </div>              
+            <div class="col-md-4">
+              <label for="inputEmail4" class="form-label">Nº documento empresa</label>
+              {{formularioRegistro.nitEmpresa}}
+            </div>
+            <div class="col-md-6">
+              <label for="inputPassword4" class="form-label">Empresa</label>
+              {{formularioRegistro.nombreEmpresa}}
+            </div>
+            <div class="col-md-4">
+              <label for="inputAddress" class="form-label">Email</label>
+              {{formularioRegistro.correoEmpresa}}
+            </div>
+            <div class="col-12">
+              <label for="inputAddress2" class="form-label">Direccion</label>
+                {{formularioRegistro.direccionEmpresa}}
+            </div>
+            <div class="col-md-2">
+              <label for="inputCity" class="form-label">Telefono</label>
+                {{formularioRegistro.telefonoEmpresa}}
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Pais</label>
+                {{formularioRegistro.pais}}
+            </div>
+            <div class="col-md-6">
+              <label for="inputZip" class="form-label">Rubro</label>
+                {{formularioRegistro.rubroEmpresa}}
+            </div>
+             <div class="col-12" id="botonRegistrar">
+                <button  type="submit" class="btn btn-primary">Registrar</button>
+             </div> 
+
+          </form>
+    </div>
+
+{% endblock %}

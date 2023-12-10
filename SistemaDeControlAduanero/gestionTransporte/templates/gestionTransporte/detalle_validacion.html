@@ -1,0 +1,172 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{% block content %}
+<h1>Detalles de validacion</h1>
+<!--Datos de documento de validacion-->   
+{% csrf_token %}
+<table class="table table-sm formulario_2" rules=all border=5>
+    {% csrf_token %}
+    <thead>
+        <th><label class="form-label mt-4">Estado validacion</label></th>
+        <th><label class="form-label mt-4">fecha validacion</label></th>
+        <th><label class="form-label mt-4">Aduana</label></th>
+        <th><label class="form-label mt-4">Guardar cambios</label></th>
+    </thead>
+    {% csrf_token %}
+    <tr>
+        {% csrf_token %}
+        <form action="" method="post" id="formulario_validacion_1" name="formulario_validacion_1">
+            {% csrf_token %}
+        <td>{{formulario_validacion.estado_validacion}}</td>
+        <td>{{formulario_validacion.fecha_validacion}}</td>
+        <td>{{formulario_validacion.aduana}}</td>
+        <td><input type="submit" value="guardar cambios" class="btn btn-outline-dark"></td>
+    </form>
+    </tr>
+</table>
+
+
+
+<h1>Agregar observaciones</h1>
+
+
+<table class="table table-sm formulario_1" rules=all border=5>
+    <tr>
+        <td colspan="2"><h5>Observaciones motoristas</h5></td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table table-sm">
+                <thead>
+                    <th>Seleccione un dato</th>
+                    <th>Dato</th>
+                </thead>
+                    <tr><td><label class="form-label mt-4">Nombre</label></td><td><label class="form-label mt-4">{{motorista.nombre}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Apellido</label></td><td><label class="form-label mt-4">{{motorista.apellido}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Doc_identifiacion</label></td><td><label class="form-label mt-4">{{motorista.doc_identificacion}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Licencia</label></td><td><label class="form-label mt-4">{{motorista.licencia}}</label></td></tr>
+            </table>
+        </td>
+        <td rowspan="4">
+            {% csrf_token %}
+            <form action="" method="post" style="text-align:center;">
+                {% csrf_token %}
+               <table class="table">
+                <tr><b>Tipo validacion:</b><input type="text" name="tipo_validacion" id="tipo_validacion" value="transportista" readonly=true class="form-control-plaintext" style="width:75%; display:inline;padding-left: 12%;"></tr>
+                {{formulario.as_table}}
+               </table>
+               <input type="submit" class="btn btn-outline-dark" value="agregar observacion" style="width: 50%; margin-bottom: 5px;"></input>
+            </form>
+            {% if observaciones_motorista %}
+            <ul class="list-group">
+                {% for observacion in observaciones_motorista %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{observacion.descripcion_validacion}}
+                  <span class="badge rounded-pill bg-dark"><a href="{% url 'gestionTransporte:eliminar_observacion' observacion.id %}">eliminar</a></span>
+                </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+<!--Tabla para validacion de vehiculo-->
+<table class="table table-sm formulario_1" rules=all border=5>
+    <tr>
+        <td colspan="2"><h5>Observaciones Vehiculo</h5></td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table table-sm">
+                <thead>
+                    <td>Dato</td>
+                    <td>Valor</td>
+                </thead>
+                    <tr><td><label class="form-label mt-4">Placa</label></td><td><label class="form-label mt-4">{{vehiculo.placa}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Modelo</label></td><td><label class="form-label mt-4">{{vehiculo.modelo}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Chasis</label></td><td><label class="form-label mt-4">{{vehiculo.chasis}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Motor</label></td><td><label class="form-label mt-4">{{vehiculo.motor}}</label></td></tr>
+            </table>
+        </td>
+        <td rowspan="4">
+            {% csrf_token %}
+            <form action="" method="post" style="text-align:center;">
+                {% csrf_token %}
+               <table class="table">
+                <tr><b>Tipo validacion:</b><input type="text" value="vehiculo" readonly=true class="form-control-plaintext" style="width:75%; display:inline;padding-left: 12%;" name="tipo_validacion" id="tipo_validacion"></tr>
+                {{formulario.as_table}}
+               </table>
+               <input type="submit" class="btn btn-outline-dark" value="agregar observacion" style="width: 50%; margin-bottom: 5px;"></input>
+            </form>
+            {% if observaciones_vehiculo %}
+            <ul class="list-group">
+                {% for observacion in observaciones_vehiculo %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{observacion.descripcion_validacion}}
+                  <span class="badge rounded-pill bg-dark"><a href="{% url 'gestionTransporte:eliminar_observacion' observacion.id %}">eliminar</a></span>
+                </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+<!--Tabla para validar carga-->
+<table class="table table-sm formulario_1" rules=all border=5>
+    <tr>
+        <td colspan="2"><h5>Observaciones Carga</h5></td>
+    </tr>
+    <tr>
+        <td>
+            <table class="table table-sm">
+                <thead>
+                    <td>Dato</td>
+                    <td>Valor</td>
+                </thead>
+                    <tr><td><label class="form-label mt-4">Tipo</label></td><td><label class="form-label mt-4">{{carga.tipo}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Descripcion</label></td><td><label class="form-label mt-4">{{carga.descripcion}}</label></td></tr>
+                    <tr><td><label class="form-label mt-4">Peso</label></td><td><label class="form-label mt-4">{{carga.peso}} KG</label></td></tr>
+            </table>
+        </td>
+        <td rowspan="4">
+            {% csrf_token %}
+            <form action="" method="post" style="text-align:center;">
+                {% csrf_token %}
+               <table class="table">
+                <tr><b>Tipo validacion:</b><input type="text" value="carga" readonly=true class="form-control-plaintext" style="width:75%; display:inline;padding-left: 12%;" name="tipo_validacion" id="tipo_validacion"></tr>
+                {{formulario.as_table}}
+               </table>
+               <input type="submit" class="btn btn-outline-dark" value="agregar observacion" style="width: 50%; margin-bottom: 5px;"></input>
+            </form>
+            {% if observaciones_carga %}
+            <ul class="list-group">
+                {% for observacion in observaciones_carga %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{observacion.descripcion_validacion}}
+                  <span class="badge rounded-pill bg-dark"><a href="{% url 'gestionTransporte:eliminar_observacion' observacion.id %}">eliminar</a></span>
+                </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+<div id="caja_prueba" name="caja_prueba">
+
+</div>
+<a href="{% url 'gestionTransporte:trasnporte_list' idAduana %}" class="btn btn-outline-dark">Terminar observaciones</a>
+{% endblock %}
+
+{% block extrajs %}
+function poner_valor(){
+    let documento= document.getElementById('nombre_check')
+    if documento.value==true{
+        document.getElementById("caja_prueba").innerHTML= "si funciona el checkbox"
+    }
+}
+{% endblock extrajs %}
+<!--la esperanza y confianza en nosotros mismos esta determinada
+en gran medida en la esperanza y confianza que tenemos en el resto de nuestros
+projimos-->

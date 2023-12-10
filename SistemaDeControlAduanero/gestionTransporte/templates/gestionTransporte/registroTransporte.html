@@ -1,0 +1,82 @@
+{% extends "gestionTransporte/base.html" %}
+
+{% block content %}
+<div class="container" id="container_listarRegistros">
+
+    <h1 style="text-align: center;">Registro de trasportes aduana {{ nombreAduana}}</h1>
+
+    <div class="container" >
+        <form method="get">
+            <div class="container" id="filtros">
+                <div class="btn-group" role="group" id="botonesFiltros">
+                   
+                    <div class="btn-group" role="group">
+                            {{ filter.form.pais_consignatario}}
+                    </div>
+                    
+                    <div class="btn-group" role="group">                 
+                        {{ filter.form.empresa_dueña }}
+                    </div>
+                    
+                    <div class="btn-group" role="group">
+                        {{ filter.form.fecha_registro }}
+                    </div>
+                    
+                    <div class="btn-group" role="group">
+                        {{ filter.form.fecha_destino }}
+                    </div>
+                    <div class="btn-group" role="group">
+                            {{  filter.form.tipo_de_viaje }}
+                    </div>
+                    <div class="btn-group" role="group">
+                        {{  filter.form.validacion }}
+                </div>
+                </div>
+                
+                
+                <div class="col" id="botonFiltrar">
+                    <div class="btn-group" role="group" style="padding-left: 3%;">
+
+                        {{  filter.form.numero_registro.label }}
+                        {{  filter.form.numero_registro }}
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Filtrar"/>
+                </div>
+            </div>  
+        </form>
+    </div>
+    
+    <!--mostrar formulario como una tabla-->
+
+    <div class="container" id="tablaGestionAduana">
+        <table class="table table-hover" id="tablaAduana">
+            <tr>
+                <th>N# de registro</th>
+                <th>Origen</th>
+                <th>Pais Consignatario</th>
+                <th>Registro</th>
+                <th>Arribo</th>
+                <th>Empresa</th>
+                <th>Validacion</th>
+                <th>Transaccion</th>
+            </tr>
+            {% for obj in filter.qs %}
+            <tr class="table-active">
+                    <td>{{ obj.numero_registro }}</td>
+                    <td>{{ obj.origen }}</td>
+                    <td>{{ obj.pais_consignatario }}</td>
+                    <td>{{ obj.fecha_registro }}</td>
+                    <td>{{ obj.fecha_destino }}</td>
+                    <td>{{ obj.empresa_dueña.nombre}}</td>
+                    <td>{{ obj.validacion.estado_validacion }}</td>
+                    <td>{{ obj.tipo_de_viaje }}</td>
+                    <td>
+                        <a href="../../detalle_validacion/{{obj.validacion_llave.id}}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>  
+</div>
+    
+{% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn scg_22.wsgi --log-file -

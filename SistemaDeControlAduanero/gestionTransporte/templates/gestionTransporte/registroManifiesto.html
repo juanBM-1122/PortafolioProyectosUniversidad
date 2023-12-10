@@ -1,0 +1,106 @@
+{% extends "gestionTransporte/base.html" %}
+{% load static %}
+{% block content %}
+<h1>Registro Transito</h1>
+{% if error %}
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong>{{error}}</strong>
+</div>
+{% endif %}
+<form method="post" class="formulario_1">
+      <legend>Formulario registro Transito</legend>
+      {% csrf_token %}
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group box--config">
+              <label for="lista_motorista" class="form-label mt-4">Motorista</label>
+                <select class="form-select" id="motorista" name="motorista">
+                  <option value=" ">---------------</option>
+                  {% for motorista in motoristas %}
+                  <option value="{{motorista.id}}">{{motorista}}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="lista_vehiculo" class="form-label mt-4">Vehiculo</label>
+              <select class="form-select" id="vehiculo" name="vehiculo">
+                <option value=" ">---------------</option>
+                {% for vehiculo in vehiculos %}
+                <option value="{{vehiculo.id}}">{{vehiculo}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div style="text-align: center">
+        <h5 class="form-label">Manifiesto Transporte</h5>
+      </div>
+      <table class="table">
+        <tr>
+          <td>
+            <div class="form-group">
+              <label for="tipo_carga" class="form-label mt-4">Tipo Carga</label>
+              {{formulario.tipo_carga}}
+            </div>
+            <div class="form-group">
+              <label for="descripcion_carga" class="form-label mt-4">Descripcion carga</label>
+              {{formulario.descripcion_carga}}
+            </div>
+          </td>
+          <td>
+            <div class="form-group">
+              <label for="peso_carga" class="form-label mt-4">Peso</label>
+              {{formulario.peso}}
+            </div>
+            <div class="form-group">
+              <label for="origen_carga" class="form-label mt-4">Origen de carga</label>
+              {{formulario.origen}}
+            </div>
+            <div class="form-group">
+              <label for="pais_consignatario" class="form-label mt-4">Pais consignatario</label>
+              {{formulario.pais_consignatario}}
+            </div>
+            <div class="form-group">
+              <label for="direccion_consignatario" class="form-label mt-4">Direccion consignatario</label>
+              {{formulario.origen}}
+            </div>
+            <div class="form-group">
+              <label for="aduana" class="form-label mt-4">Aduana de destino</label>
+              {{formulario.aduana_destino}}
+            </div>
+            <div class="form-group">
+              <label for="fecha_registro" class="form-label mt-4">fecha registro</label>
+              <input type="date" value="{{fecha_ahora}}" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <label for="fecha_llegada" class="form-label mt-4">fecha de arribo aduana</label>
+              {{formulario.fecha_destino}}
+            </div>
+          </td>
+        </tr>
+      </table>
+      {{formulario.id}}
+    <input type="submit" class="btn btn-primary" value="Guardar registro"></input>
+  </form>
+
+  <div class="model fade" id="modal_1" role="dialog">
+    
+  </div>
+
+  {% endblock %}
+
+  {% block extrajs %}
+  <script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_modal_edicion(url){
+      console.log(url);
+      $('#modal_1').load(url,function(){
+        $(this).modal('show');
+        console.log("entramos al metodo");
+      });
+    }
+  </script>  
+  {% endblock %}

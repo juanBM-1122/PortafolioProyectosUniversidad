@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Paridas de ajuste</title>
+</head>
+<body>
+    <div class="container">
+        <form method="POST" id="formulario-registro-diario">
+          {% csrf_token %}
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <label for="inputDate" class="form-label">Fecha</label>
+                    <input type="text" class="form-control" id="idFecha">
+                  </div>
+                  <div class="col">
+                    <label for="inputDescripcion" class="form-label">Numero de partida</label>
+                    <input type="number" class="form-control" id="idNumero"  name="idNumero" pattern="[0-9]{1,10}">
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="inputDescripcion" class="form-label">Descripción</label>
+                  <input type="text" class="form-control" id="idDescripcion" name="idDescripcion">
+                </div>
+                
+                </div>    
+            </div>
+    
+
+            <div class="card" style="margin-top: 10px;">
+              <div class="card-body">
+
+              <table class="table">
+                <div class="row">
+                    <div class="col">
+                      <label for="cuentaLabel">Cuenta</label>
+                      <select class="form-control" id="cuenta" name="cuenta">
+                        {% if cuentas %}
+                          {% for cuenta in cuentas %}
+                          <option value="{{ cuenta.nombre_cuenta }}">{{cuenta.nombre_cuenta}}</option>
+                          {% endfor %}
+                        {% endif %}
+                      </select>
+                    </div>
+                    <div class="col">
+                      <label for="tipoMovimiento">Tipo Movimiento</label>
+                      <select class="form-control" id="tipoMovimientoSelect" name="tipoMovimientoSelect">
+                        {% if movimientos %}
+                          {% for movimiento in movimientos%}
+                          <option value="{{ movimiento.nombre_tipo_registro}}">{{movimiento.nombre_tipo_registro}}</option>    
+                          {% endfor %}
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="montoInput">Monto transacción</label>
+                    <input type="text" class="form-control" id="monto" name="monto" placeholder="Ingrese el monto de la transacción" pattern="[0-9]{1,5}.?[0-9]{0,2}">
+                  </div>
+              </table>
+             
+              
+         <input type="button" class="btn btn-primary" value="Agregar" id="btnAgregar">     
+        </div> 
+      </div>  
+        
+
+      
+    </div>
+    <p></p>
+    <div class="container">
+        <table class="table" id="tablaRegistro">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">MONTO</th>
+                <th scope="col">TIPO MOVIMIENTO</th>
+                <th scope="col">CUENTA</th>
+                <th scope="col">ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="montoElemento">{{ elemt.monto }}</td>
+                <td class="tipoRegistroElemento">{{ elemt.tipo_registro }}</td>
+                <td class="cuentaElemento">{{ elemt.cuenta }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <input type="button" class="btn btn-primary" value="Guardar Partida" id="btnGuardar">     
+    </div> 
+</form> 
+<a href="{% url 'modulo_general:balance_comprobacion'%}?ajustar_balance=ok" class="btn btn-success">Realizar Ajuste</a>
+
+{% if exito %}
+
+  <div class="alert alert-primary" role="alert">
+  {{ exito }}
+  </div>
+{% endif %}
+
+<script src="{% static 'modulo_general/js/ajustar_balance.js' %}"></script>
+</body>
+</html>

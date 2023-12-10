@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"/>
+    <title>Balance de Comprobación</title>
+</head>
+<body>
+    <div style="width: 75%; margin: 0 auto;">
+        <table class="table">
+            <thead>
+                <tr style="text-align:center;">
+                    <td colspan="4"><h3>5-State Tech</h3></td>
+                </tr>
+                <tr style="border: none; text-align: center;">
+                    <td colspan="4"><h3>Balance de comprobacion</h3></td>
+                </tr>
+                <tr style="border: none; text-align: center;">
+                    <td colspan="4">Periodo de {{temp_libro_mayor.fecha_de_inicio_periodo}} hasta {{temp_libro_mayor.fecha_fin_periodo}}</td>
+                </tr>
+              <tr>
+                <th scope="col">Numero cuenta</th>
+                <th scope="col">Nombre cuenta</th>
+                <th scope="col">Debe</th>
+                <th scope="col">Haber</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for cargos in cuentas_activo %}
+              <tr>
+                <th scope="row">{{cargos.cuenta.codigo_cuenta}}</th>
+                <td>{{cargos.cuenta.nombre_cuenta}}</td>
+                <td>{{cargos.saldo_cuenta_T}}</td>
+                <td>$.-</td>
+              </tr>
+              {% endfor %}
+              {% for abono in cuentas_pasivos_capital %}
+              <tr>
+                <th scope="row">{{abono.cuenta.codigo_cuenta}}</th>
+                <td>{{abono.cuenta.nombre_cuenta}}</td>
+                <td>$.-</td>
+                <td>{{abono.saldo_cuenta_T}}</td>
+              </tr>
+              {% endfor %}
+              <tfoot style="background-color: rgb(190, 186, 186);">
+                <td colspan="2">Total</td>
+                <td>{{saldo_debe}}</td>
+                <td>{{saldo_haber}}</td>
+              </tfoot>
+            </tbody>
+          </table>
+          {% if balance_comprobacion %}
+          {% if balance_comprobacion.esta_ajustado == False %}
+          <a href="{% url 'modulo_general:ajustar_balance' %}" class="btn btn-success">Agregar partidas de ajuste</a>
+          {% endif %}
+          <a href="{% url 'modulo_general:lista-estado-resultado' %}?crear_estado={{balance_comprobacion.id}}" class="btn btn-success">Crear estado de resultado</a>
+          <a href="{% url 'modulo_general:lista-estado-capital' %}?crear_estado={{balance_comprobacion.id}}" class="btn btn-success">Crear estado de capital</a>
+          <a href="{% url 'modulo_general:lista-balance-general' %}?crear_balance={{balance_comprobacion.id}}" class="btn btn-success">Crear Balance General</a>
+          {% endif %}
+    </div>
+    <script src="{% static 'modulo_general/js/corregir_cantidades.js' %}"></script>
+</body>
+</html>
